@@ -1,0 +1,156 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plant Data</title>
+    <link rel="icon" type="image/x-icon" href="assets/edenplant.png">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="main.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Indie+Flower&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+</head>
+<body class="">
+
+      <!-- Nav Bar -->
+      <nav class="navbar">
+        <div class="w3-container bg-dark-green w3-bar w3-padding">
+            <!-- Logo -->
+            <a href="index.html" class="w3-bar-item w3-center">
+                <img src="assets/edenplant.png" alt="Logo" class="w3-image large-screen-logo" style="height: 50px;">
+                <img src="assets/edentrans.png" alt="Logo for Small Screens"  class="w3-image small-screen-logo w3-center" >
+            </a>
+    
+            <!-- Navigation Links -->
+            <div class="w3-right w3-bar ">
+                <a href="index.html" class="w3-mobile w3-bar-item w3-button text-pale-green indie-flower-regular w3-large">Home</a>
+                <a href="aboutus.html" class="w3-mobile w3-bar-item w3-button text-pale-green indie-flower-regular w3-large">About</a>
+                <a href="community.html" class="w3-mobile w3-bar-item w3-button text-pale-green indie-flower-regular w3-large">Community</a>
+                <div class="w3-dropdown-hover w3-mobile">
+                    <button class="w3-button text-pale-green indie-flower-regular w3-large ">My Garden</button>
+                    <div class="w3-dropdown-content w3-bar-block w3-card-4 bg-cream">
+                        <a href="crud.html" class="w3-mobile w3-bar-item w3-button text-dark-green indie-flower-regular w3-large">My Garden Manager</a>
+                        <a href="analytics.html" class="w3-mobile w3-bar-item w3-button text-dark-green indie-flower-regular w3-large">My Garden Stats</a>
+                            
+                    </div>
+                  </div>
+            </div>
+        </div>
+
+    </nav>
+
+
+    <div class="w3-display-container bg-pale-green w3-hide-small" >
+
+        <img src="assets/indoor-plants-for-mental-health-669e9bb4e8793.jpg.avif" alt="Garden Background" class="w3-image w3-opacity " style="width: 100%; height: auto;">
+        <div class="w3-display-middle w3-center ">
+            <h1 class="indie-flower-regular text-dark-green bg-cream w3-center" style="font-size:72px; ">My Garden Stats</h1>
+        </div>
+    </div>
+    <main class="w3-container w3-padding">
+
+    <div class="w3-container w3-center w3-padding-64 ">
+        <h2 class="w3-center indie-flower-regular text-dark-green">Plant Distribution in Your Garden</h2>
+
+        <!-- Graph Selector -->
+        <div class="w3-center w3-margin-bottom">
+            <label for="chartType" class="text-dark-green">Select Chart Type:</label>
+            <select id="chartType" class="w3-select w3-border w3-round" style="max-width: 300px;">
+                <option value="bar" selected>Bar</option>
+            
+                <option value="pie">Pie</option>
+                <option value="doughnut">Doughnut</option>
+            </select>
+        </div>
+
+        <!-- Chart Canvas -->
+        <canvas id="gardenChart"></canvas>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="w3-center w3-padding-32 bg-dark-green text-cream">
+        <div class="w3-large w3-margin-top">
+            <a href="https://github.com/zayvianas" target="_blank" class="w3-button bg-dark-green w3-margin">
+                <i class="fa fa-github w3-xlarge"></i> GitHub
+            </a>
+            <a href="https://www.linkedin.com/in/zayviana/" target="_blank" class="w3-button bg-dark-green w3-margin">
+                <i class="fa fa-linkedin w3-xlarge"></i> LinkedIn
+            </a>
+            <a href="tel:8137772209" class="w3-button bg-dark-green w3-margin">
+                <i class="fa fa-phone w3-xlarge"></i> Contact Us
+            </a>
+            <a href="mailto:zayvianas@gmail.com" class="w3-button bg-dark-green w3-margin">
+                <i class="fa fa-envelope w3-xlarge"></i> Email Us
+            </a>
+        </div>
+        <p> &copy; 2024 Eden Gardens & Co. All Rights Reserved.</p>
+    </footer>
+
+
+    <!-- JavaScript -->
+    <script>
+        const ctx = document.getElementById('gardenChart').getContext('2d');
+
+        // Retrieve garden data from localStorage
+        const gardenData = JSON.parse(localStorage.getItem('gardenData')) || {};
+        const labels = Object.keys(gardenData); // Plant names
+        const data = Object.values(gardenData); // Quantities
+
+        if (labels.length === 0) {
+            alert('No data available! Please add plants to your garden first.');
+        } else {
+            // Initial chart type
+            let chartType = 'bar';
+
+            // Function to create the chart
+            let chart;
+            const createChart = (type) => {
+                if (chart) {
+                    chart.destroy(); // Destroy existing chart
+                }
+                chart = new Chart(ctx, {
+                    type: type, // Dynamic chart type
+                    data: {
+                        labels: labels, // Plant names
+                        datasets: [{
+                            label: 'Number of Plants',
+                            data: data, // Quantities
+                            backgroundColor: ['#457D58', '#7D9B76', '#CBDDD1', '#F6F6E9', '#272727'], // Custom colors
+                            borderColor: '#272727',
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        plugins: {
+                            legend: {
+                                position: 'top'
+                            },
+                            title: {
+                                display: true,
+                                text: 'Your Garden Overview'
+                            }
+                        },
+                        scales: type === 'bar' || type === 'line' ? { y: { beginAtZero: true } } : {}
+                    }
+                });
+            };
+
+            // Initialize chart
+            createChart(chartType);
+
+            // Event listener for chart type selection
+            document.getElementById('chartType').addEventListener('change', (e) => {
+                chartType = e.target.value; // Get selected chart type
+                createChart(chartType); // Re-create chart with new type
+            });
+        }
+    </script>
+    
+ 
+
+</body>
+
+</html>

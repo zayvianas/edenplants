@@ -1,0 +1,104 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Community</title>
+    <link rel="icon" type="image/x-icon" href="assets/edenplant.png">
+    <script src="main.js"></script> </head>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Indie+Flower&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+</head>
+<body>
+      <!-- Nav Bar -->
+      <nav class="navbar">
+        <div class="w3-container bg-dark-green w3-bar w3-padding">
+            <!-- Logo -->
+            <a href="index.html" class="w3-bar-item w3-center">
+                <img src="assets/edenplant.png" alt="Logo" class="w3-image large-screen-logo" style="height: 50px;">
+                <img src="assets/edentrans.png" alt="Logo for Small Screens"  class="w3-image small-screen-logo w3-center" >
+            </a>
+    
+            <!-- Navigation Links -->
+            <div class="w3-right w3-bar ">
+                <a href="index.html" class="w3-mobile w3-bar-item w3-button text-pale-green indie-flower-regular w3-large">Home</a>
+                <a href="aboutus.html" class="w3-mobile w3-bar-item w3-button text-pale-green indie-flower-regular w3-large">About</a>
+                <a href="community.html" class="w3-mobile w3-bar-item w3-button text-pale-green indie-flower-regular w3-large">Community</a>
+                <div class="w3-dropdown-hover w3-mobile">
+                    <button class="w3-button text-pale-green indie-flower-regular w3-large ">My Garden</button>
+                    <div class="w3-dropdown-content w3-bar-block w3-card-4 bg-cream">
+                        <a href="crud.html" class="w3-mobile w3-bar-item w3-button text-dark-green indie-flower-regular w3-large">My Garden Manager</a>
+                        <a href="analytics.html" class="w3-mobile w3-bar-item w3-button text-dark-green indie-flower-regular w3-large">My Garden Stats</a>
+                            
+                    </div>
+                  </div>
+            </div>
+        </div>
+
+    </nav>
+
+<div class="w3-display-container bg-pale-green w3-hide-small" >
+
+    <img src="assets/indoor-plants-for-mental-health-669e9bb4e8793.jpg.avif" alt="Garden Background" class="w3-image w3-opacity w3-hide-small " style="width: 100%; height: auto;">
+    <div class="w3-display-middle w3-center w3-hide-small">
+        <h1 class="indie-flower-regular text-dark-green bg-cream w3-center" style="font-size:72px; ">Community</h1>
+    </div>
+</div>
+<div class="w3-container w3-padding-64 bg-pale-green">
+    <h2 class="indie-flower-regular text-dark-green w3-center w3-xxlarge">Community Forum</h2>
+    <p class="w3-large w3-center">Share your plant stories, tips, and photos with the Eden Gardens community!</p>
+
+    <div class="w3-center">
+        <button onclick="toggleForm()" class="w3-center w3-button bg-cream w3-round w3-margin-bottom w3-text-cream">Create a Post</button>
+
+    </div>
+
+
+    <!-- Hidden Post Form -->
+    <div id="postFormContainer" class="w3-card w3-round w3-padding bg-cream w3-margin" style="display: none;">
+        <form id="postForm" class="w3-container">
+            <label class="w3-text-dark-green"><b>Your Name (Optional):</b></label>
+            <input type="text" name="name" class="w3-input w3-border w3-round" placeholder="Enter your name (leave blank to stay anonymous)">
+
+            <label class="w3-text-dark-green"><b>Post a Picture:</b></label>
+            <input type="file" name="image" class="w3-input w3-border w3-round" accept="image/*">
+
+            <label class="w3-text-dark-green"><b>Your Message:</b></label>
+            <textarea name="message" rows="4" class="w3-input w3-border w3-round" placeholder="Write your comment about plants..."></textarea>
+
+            <button type="button" onclick="addPost()" class="w3-button bg-pale-green w3-round w3-margin-top w3-text-cream">Post</button>
+        </form>
+    </div>
+
+    <!-- Posts Section -->
+    <div id="postsContainer" class="w3-container">
+        <h3 class="indie-flower-regular text-dark-green w3-center w3-xlarge">Recent Posts</h3>
+    </div>
+</div>
+
+    
+
+    <!-- Footer -->
+    <footer class="w3-center w3-padding-32 bg-dark-green text-cream">
+        <div class="w3-large w3-margin-top">
+            <a href="https://github.com/zayvianas" target="_blank" class="w3-button bg-dark-green w3-margin">
+                <i class="fa fa-github w3-xlarge"></i> GitHub
+            </a>
+            <a href="https://www.linkedin.com/in/zayviana/" target="_blank" class="w3-button bg-dark-green w3-margin">
+                <i class="fa fa-linkedin w3-xlarge"></i> LinkedIn
+            </a>
+            <a href="tel:8137772209" class="w3-button bg-dark-green w3-margin">
+                <i class="fa fa-phone w3-xlarge"></i> Contact Us
+            </a>
+            <a href="mailto:zayvianas@gmail.com" class="w3-button bg-dark-green w3-margin">
+                <i class="fa fa-envelope w3-xlarge"></i> Email Us
+            </a>
+        </div>
+        <p> &copy; 2024 Eden Gardens & Co. All Rights Reserved.</p>
+    </footer>
+</body>
+</html>
